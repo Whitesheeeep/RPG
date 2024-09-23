@@ -10,6 +10,9 @@ public class Entity : MonoBehaviour
     [Header("Collision Info")]
     public Transform attackCheck;
     public float attackRadius;
+    [SerializeField]protected Vector2 KnockbackDir;
+    private bool isKnockback;
+
     protected EntityFX entityFX;
     [SerializeField] protected Transform groundCheck;//SerializeField 使私有变量在Inspector中显示
     [SerializeField] protected float groundCheckDistance;
@@ -47,6 +50,11 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if (isKnockback)
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(xVelocity, yVelocity);
         FlipController(xVelocity);
     }
@@ -90,6 +98,7 @@ public class Entity : MonoBehaviour
 
     public void GetDamaged()
     {
+        this.StartCoroutine("HitKnockBack");
         entityFX.StartCoroutine("FlashFX");
         Debug.Log(gameObject.name + "  受到伤害");
     }
@@ -100,5 +109,13 @@ public class Entity : MonoBehaviour
         isBusy = true;
         yield return new WaitForSeconds(seconds);
         isBusy = false;
+    }
+
+    public IEnumerator HitKnockBack()
+    {
+        isKnockback = true;
+        rb.velocity = new Vector2(KnockbackDir.x * -facingDir, KnockbackDir.y);
+        yield return new WaitForSeconds(0.07f);
+        isKnockback = false;
     }
 }
