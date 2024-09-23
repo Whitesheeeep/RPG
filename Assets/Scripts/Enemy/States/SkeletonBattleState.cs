@@ -47,6 +47,7 @@ public class SkeletonBattleState : EnemyState
 
         if (enemy.IsPlayerDetected())
         {
+            stateTimer = enemy.battleTime;
             if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
                 enemy.SetVelocity(0, rb.velocity.y);
@@ -58,6 +59,10 @@ public class SkeletonBattleState : EnemyState
                     return;
                 }
             }
+        }
+        else if(stateTimer <= 0 || Vector2.Distance(enemy.transform.position, player.transform.position)>enemy.escapeBattleDistance)
+        {
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 

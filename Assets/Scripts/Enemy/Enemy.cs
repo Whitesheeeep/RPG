@@ -13,6 +13,8 @@ public class Enemy : Entity
     public float attackDistance;
     public float attackCoolDown;
     [HideInInspector] public float LastAttackTime;
+    public float battleTime;
+    public float escapeBattleDistance;
     #region ¿‡
     public EnemyStateMachine stateMachine;
 

@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
 
     #region Collision Info
     [Header("Collision Info")]
+    public Transform attackCheck;
+    public float attackRadius;
     [SerializeField] protected Transform groundCheck;//SerializeField 使私有变量在Inspector中显示
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
@@ -55,6 +57,9 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+
+        //检查攻击范围
+        Gizmos.DrawWireSphere(attackCheck.position, attackRadius);
     }
     #endregion Collision Check
 
@@ -81,6 +86,10 @@ public class Entity : MonoBehaviour
     }
     #endregion Flip
 
+    public void GetDamaged()
+    {
+        Debug.Log(gameObject.name + "  受到伤害");
+    }
 
     //一个协程，让isBusy在等待一段时间后变为false
     public IEnumerator BusyFor(float seconds)
