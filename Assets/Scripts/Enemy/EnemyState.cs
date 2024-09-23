@@ -40,7 +40,7 @@ public class EnemyState
         enemyBase.animator.SetBool(animBoolName, false);
     }
 
-    internal void AnimationFinishTrigger()
+    public void AnimationFinishTrigger()
     {
         triggerCalled = true;
     }
