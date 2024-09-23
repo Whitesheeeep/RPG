@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EntityFX : MonoBehaviour
+{
+    public float flashTime = 0.1f;
+
+    private SpriteRenderer sr;
+    [SerializeField]private Material hitMat;
+    private Material originMat;
+
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        originMat = sr.material;
+    }
+
+    private IEnumerator FlashFX()
+    {
+        sr.material = hitMat;
+        yield return new WaitForSeconds(flashTime);
+        sr.material = originMat;
+    }
+}

@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     [Header("Collision Info")]
     public Transform attackCheck;
     public float attackRadius;
+    protected EntityFX entityFX;
     [SerializeField] protected Transform groundCheck;//SerializeField 使私有变量在Inspector中显示
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
@@ -34,6 +35,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        entityFX = GetComponentInChildren<EntityFX>();
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -88,6 +90,7 @@ public class Entity : MonoBehaviour
 
     public void GetDamaged()
     {
+        entityFX.StartCoroutine("FlashFX");
         Debug.Log(gameObject.name + "  受到伤害");
     }
 
