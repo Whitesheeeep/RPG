@@ -15,7 +15,7 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        xInput = Input.GetAxisRaw("Horizontal");
+        xInput = Input.GetAxisRaw("Horizontal");//修复攻击有时与方向不一致的的bug，问题可能出现在xInput 仍然保留的是上一个 Update 中的数据。
         //xInput 输入之前已经改变了
         float attackDir = (xInput == 0) ? player.facingDir : xInput;
 

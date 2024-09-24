@@ -11,9 +11,9 @@ public class Entity : MonoBehaviour
     public Transform attackCheck;
     public float attackRadius;
     [SerializeField]protected Vector2 KnockbackDir;
-    private bool isKnockback;
+    private bool isKnockbacked;
 
-    protected EntityFX entityFX;
+    public EntityFX entityFX;
     [SerializeField] protected Transform groundCheck;//SerializeField 使私有变量在Inspector中显示
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
@@ -50,7 +50,7 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void SetVelocity(float xVelocity, float yVelocity)
     {
-        if (isKnockback)
+        if (isKnockbacked)
         {
             return;
         }
@@ -111,11 +111,11 @@ public class Entity : MonoBehaviour
         isBusy = false;
     }
 
-    public IEnumerator HitKnockBack()
+    protected IEnumerator HitKnockBack()
     {
-        isKnockback = true;
+        isKnockbacked = true;
         rb.velocity = new Vector2(KnockbackDir.x * -facingDir, KnockbackDir.y);
         yield return new WaitForSeconds(0.07f);
-        isKnockback = false;
+        isKnockbacked = false;
     }
 }

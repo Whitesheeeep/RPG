@@ -6,12 +6,19 @@ using UnityEngine;
 public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
+
+    [Header("Stunned Info")]
+    public Vector2 stunnedDir;
+    public float stunnedTime;
+
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
+
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCoolDown;
+
     [HideInInspector] public float LastAttackTime;
     public float battleTime;
     public float escapeBattleDistance;
