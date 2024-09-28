@@ -1,20 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class SkillManager : MonoBehaviour
 {
-    //µ¥ÀýÄ£Ê½
-    public static PlayerManager instance;
-    public Player player;
+    public static SkillManager instance;
 
     private void Awake()
     {
         if (instance != null)
         {
             Destroy(instance.gameObject);
-            Debug.Log("There are more than one PlayerManager in the scene");
+            Debug.Log("There are more than one SkillManager in the scene");
         }
         else
         {
