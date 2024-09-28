@@ -23,7 +23,7 @@ public class PlayerGroundState : PlayerState
         base.Update();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            stateMachine.ChangeState(player.primaryAttack);
+            stateMachine.ChangeState(player.PrimaryAttack);
             
         }
 
@@ -34,6 +34,11 @@ public class PlayerGroundState : PlayerState
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected()) 
         { 
             stateMachine.ChangeState(player.JumpState);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            stateMachine.ChangeState(player.CounterAttackState);
         }
     }
 }
