@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
     [SerializeField]protected Vector2 KnockbackDir;
     private bool isKnockbacked;
 
-    public EntityFX entityFX;
+    [HideInInspector] public EntityFX entityFX;
     [SerializeField] protected Transform groundCheck;//SerializeField 使私有变量在Inspector中显示
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;

@@ -17,8 +17,6 @@ public class Player : Entity
     public float jumpForce;
 
     [Header("Dash Info")]
-    [SerializeField] private float dashCoolDown;
-    private float dashCoolTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
@@ -26,6 +24,7 @@ public class Player : Entity
 
     public float wallJumpDuration;
 
+    public SkillManager skill;
 
 
 
@@ -61,7 +60,8 @@ public class Player : Entity
     {
         base.Start();
         StateMachine.Initialize(IdleState);
-        
+        skill = SkillManager.instance;
+
     }
         
     protected override void Update()
@@ -76,10 +76,8 @@ public class Player : Entity
 
     public void CheckForDashInput()
     {
-        dashCoolTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCoolTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && this.skill.dash.CanUseSkill())
         {
-            dashCoolTimer = dashCoolDown;
             dashDir = Input.GetAxisRaw("Horizontal");  
             if(dashDir == 0)
             {

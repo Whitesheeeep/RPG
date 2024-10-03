@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(99)]
 public class PlayerManager : MonoBehaviour
 {
     //µ¥ÀýÄ£Ê½
     public static PlayerManager instance;
     public Player player;
 
+    
     private void Awake()
     {
         if (instance != null)
@@ -20,5 +22,7 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Debug.Log("PlayerManager is awake");
     }
 }
