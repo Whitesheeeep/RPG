@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAimSwordState : PlayerState
 {
+
     public PlayerAimSwordState(PlayerStateMachine stateMachine, Player player, string animBoolName) : base(stateMachine, player, animBoolName)
     {
     }
@@ -12,12 +13,14 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Enter();
 
-        player.skill.swordSkill.DotsActive(true);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        //优化手感，以免刚扔出去剑就滑步出去
+        player.StartCoroutine("BusyFor",0.1f);
     }
 
     public override void Update()
@@ -29,5 +32,16 @@ public class PlayerAimSwordState : PlayerState
             stateMachine.ChangeState(player.IdleState);
             
         }
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (player.transform.position.x > mousePosition.x && player.facingDir == 1)
+        {
+            player.Flip();
+        }
+        else if(player.transform.position.x < mousePosition.x && player.facingDir == -1)
+        {
+            player.Flip();
+        }
+
     }
 }

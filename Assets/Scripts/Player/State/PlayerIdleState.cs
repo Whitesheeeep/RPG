@@ -23,6 +23,7 @@ public class PlayerIdleState : PlayerGroundState
     {
         base.Update();
         
+        //通过控制 isBusy 来控制手感
         if (xInput != 0 && !player.isBusy)
             stateMachine.ChangeState(player.MoveState);
     }

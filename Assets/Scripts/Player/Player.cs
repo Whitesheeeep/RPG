@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    
-    
+    public GameObject sword { get; private set; }
+
     [Header("Attack Info")]
     public Vector2[] attackMotion;
     public float counterAttackWindow;
@@ -24,9 +24,9 @@ public class Player : Entity
 
     public float wallJumpDuration;
 
-    public SkillManager skill;
+    [HideInInspector] public SkillManager skill;
 
-
+    public float swordReturnImpact;
 
     #region States
     public PlayerStateMachine StateMachine { get; private set; }
@@ -76,7 +76,16 @@ public class Player : Entity
         //Debug.Log(StateMachine.currentState);
     }
 
+    public void AssignNewSword(GameObject newSword)
+    {
+        sword = newSword;
+    }
 
+    public void CatchTheSword()
+    {
+        StateMachine.ChangeState(TackBackSwordState);
+        Destroy(sword);
+    }
 
     public void CheckForDashInput()
     {

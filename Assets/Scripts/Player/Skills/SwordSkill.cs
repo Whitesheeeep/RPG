@@ -17,11 +17,12 @@ public class SwordSkill : Skill
     [SerializeField] private float dotSpacing;
     [SerializeField] private Transform dotsParent;
 
-    private GameObject[] dots;
+    private static GameObject[] dots;
 
     protected override void Start()
     {
         base.Start();
+        //先生成点
         GenerateDots();
     }
 
@@ -29,25 +30,31 @@ public class SwordSkill : Skill
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKey(KeyCode.F))
+        //用一个 is 语句来判断当前状态是否是 AimSwordState从而避免 bug
+        if (Input.GetKey(KeyCode.F) && player.StateMachine.currentState is PlayerAimSwordState)
         {
+            DotsActive(true);
             for (int i = 0; i< dotsCount; i++)
             {
                 dots[i].transform.position = DotPosition(i * dotSpacing);
             }
         }
+        
     }
 
 
     public override void UseSkill()
     {
         base.UseSkill();
+        //最终方向为鼠标方向乘以发射力
         finalDir = new Vector2(AimDir().x * launchForce.x, AimDir().y * launchForce.y);
         GameObject sword = Instantiate(swordPrefab, player.transform.position, Quaternion.identity);
-        SwordSkillController sWCtrl = sword.GetComponent<SwordSkillController>();
+        SwordSkillController sSCtrl = sword.GetComponent<SwordSkillController>();
 
-        sWCtrl.SetUpSword(finalDir, swordGravity);
-        
+        sSCtrl.SetUpSword(finalDir, swordGravity, player);
+
+        player.AssignNewSword(sword);
+
         //放出后轨迹消失
         DotsActive(false);
     }
