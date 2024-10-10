@@ -16,8 +16,10 @@ public class SwordSkill : Skill
     [SerializeField] private int dotsCount;
     [SerializeField] private float dotSpacing;
     [SerializeField] private Transform dotsParent;
-
     private static GameObject[] dots;
+
+    public float boucingSpeed = 10;
+    public int bounceCount = 2;
 
     protected override void Start()
     {

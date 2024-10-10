@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : Entity
 {
     public GameObject sword { get; private set; }
@@ -45,6 +46,8 @@ public class Player : Entity
 
     protected override void Awake()
     {
+        skill = SkillManager.instance;
+
         StateMachine = new PlayerStateMachine();
 
         IdleState = new PlayerIdleState(StateMachine, this, "Idle");
@@ -64,7 +67,7 @@ public class Player : Entity
     {
         base.Start();
         StateMachine.Initialize(IdleState);
-        skill = SkillManager.instance;
+        
 
     }
         

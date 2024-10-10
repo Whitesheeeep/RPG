@@ -216,3 +216,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnSpeed: 30
+  bounceSpeed: 30
+  bounceCount: 2
+  enemyTargets: []
+  bounceTime: 3
+  bounceRadius: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512

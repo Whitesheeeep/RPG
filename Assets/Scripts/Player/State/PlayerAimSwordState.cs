@@ -20,7 +20,7 @@ public class PlayerAimSwordState : PlayerState
         base.Exit();
 
         //优化手感，以免刚扔出去剑就滑步出去
-        player.StartCoroutine("BusyFor",0.1f);
+        player.StartCoroutine("BusyFor",0.2f);
     }
 
     public override void Update()

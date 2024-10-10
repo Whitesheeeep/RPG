@@ -20,12 +20,12 @@ public class SkillManager : MonoBehaviour
         {
             instance = this;
         }
+        dash = GetComponent<DashSkill>();
+        clone = GetComponent<CloneSkill>();
+        swordSkill = GetComponent<SwordSkill>();
     }
 
     private void Start()
     {
-        dash = GetComponent<DashSkill>();
-        clone = GetComponent<CloneSkill>();
-        swordSkill = GetComponent<SwordSkill>();
     }
 }
