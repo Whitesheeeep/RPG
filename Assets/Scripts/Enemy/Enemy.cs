@@ -1,22 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
 
+    #region Stunned Info
     [Header("Stunned Info")]
     public Vector2 stunnedDir;
     public float stunnedTime;
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterImage;
+    #endregion
 
+    #region Move Info
     [Header("Move Info")]
     public float moveSpeed;
+    private float defaultMoveSpeed;
     public float idleTime;
+    #endregion
 
+    #region Attack Info
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCoolDown;
@@ -24,6 +28,8 @@ public class Enemy : Entity
     [HideInInspector] public float LastAttackTime;
     public float battleTime;
     public float escapeBattleDistance;
+    #endregion
+
     #region ¿‡
     public EnemyStateMachine stateMachine;
 
@@ -38,7 +44,7 @@ public class Enemy : Entity
     protected override void Start()
     {
         base.Start();
-
+        defaultMoveSpeed = moveSpeed;
     }
 
 
@@ -78,7 +84,7 @@ public class Enemy : Entity
 
     public virtual bool CanBeStunned()
     {
-        if(canBeStunned)
+        if (canBeStunned)
         {
             CloseCounterAttackWindow();
             return true;
@@ -87,4 +93,25 @@ public class Enemy : Entity
         return false;
     }
     #endregion
+
+    public void FreezeTime(bool isFreeze)
+    {
+        if (isFreeze)
+        {
+            moveSpeed = 0;
+            animator.speed = 0;
+        }
+        else
+        {
+            moveSpeed = defaultMoveSpeed;
+            animator.speed = 1;
+        }
+    }
+
+    public IEnumerator FreezeTimeFor(float time)
+    {
+        FreezeTime(true);
+        yield return new WaitForSeconds(time);
+        FreezeTime(false);
+    }
 }

@@ -15,7 +15,6 @@ public class SkeletonBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter BattleState");
         player = PlayerManager.instance.player.transform;
     }
 
@@ -53,7 +52,6 @@ public class SkeletonBattleState : EnemyState
                 enemy.SetVelocity(0, rb.velocity.y);
                 if (CanAttack())
                 {
-                    Debug.Log("I Attack;");
                     //enemy.SetVelocity(0, rb.velocity.y);
                     stateMachine.ChangeState(enemy.attackState);
                     return;

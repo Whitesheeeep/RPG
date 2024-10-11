@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Player\State\PlayerTackBackSwordState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_Skeleton.cs" />
+    <Compile Include="Assets\BlackHole_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\ParallaxBackground.cs" />
