@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class Player : Entity
@@ -29,6 +30,9 @@ public class Player : Entity
 
     public float swordReturnImpact;
 
+    //BlackHole ÄÜ·ñ¿ªÆô¿ØÖÆ
+    [HideInInspector] public bool canBlackHoleReleased = true;
+
     #region States
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
@@ -42,6 +46,7 @@ public class Player : Entity
     public PlayerCounterAttackState CounterAttackState { get; private set; }
     public PlayerAimSwordState AimSwordState { get; private set; }
     public PlayerTackBackSwordState TackBackSwordState { get; private set; }
+    public PlayerBlackHoleState BlackHoleState { get; private set; }
     #endregion States
 
     protected override void Awake()
@@ -61,14 +66,14 @@ public class Player : Entity
         CounterAttackState = new PlayerCounterAttackState(StateMachine, this, "CounterAttack");
         AimSwordState = new PlayerAimSwordState(StateMachine, this, "SwordAim");
         TackBackSwordState = new PlayerTackBackSwordState(StateMachine, this, "SwordTackBack");
+        BlackHoleState = new PlayerBlackHoleState(StateMachine, this, "Jump");
     }
 
     protected override void Start()
     {
         base.Start();
         StateMachine.Initialize(IdleState);
-        
-
+       
     }
         
     protected override void Update()
@@ -77,6 +82,11 @@ public class Player : Entity
         StateMachine.currentState.Update();
         CheckForDashInput();
         //Debug.Log(StateMachine.currentState);
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            this.skill.crystalSkill.CanUseSkill();
+        }
     }
 
     public void AssignNewSword(GameObject newSword)
@@ -103,7 +113,17 @@ public class Player : Entity
         }
     }
 
-
+    //ÍË³öºÚ¶´×´Ì¬
+    public void ExitBlackHoleState()
+    {
+        StateMachine.ChangeState(IdleState);
+        MakeTransparent(false);
+    }
 
     public void AnimationTrigger() => StateMachine.currentState.AnimationFinishTrigger();
+
+    public void CanBlackHoleReleased(bool canReleased)
+    {
+        canBlackHoleReleased = canReleased;
+    }
 }

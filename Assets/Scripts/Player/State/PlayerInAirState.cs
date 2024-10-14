@@ -22,6 +22,11 @@ public class PlayerInAirState : PlayerState
     {
         base.Update();
 
+        if (Input.GetKeyDown(KeyCode.R) && player.canBlackHoleReleased)
+        {
+            stateMachine.ChangeState(player.BlackHoleState);
+        }
+
         if (player.IsGroundDetected())
         {
             player.rb.velocity = new Vector2(0, rb.velocity.y);//修复从空中跳跃下来会有速度的bug

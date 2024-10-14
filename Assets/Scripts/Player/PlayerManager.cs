@@ -22,7 +22,5 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
-
-        Debug.Log("PlayerManager is awake");
     }
 }

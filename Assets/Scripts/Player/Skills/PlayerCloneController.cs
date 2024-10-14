@@ -50,14 +50,14 @@ public class PlayerCloneController : MonoBehaviour
         }
     }
 
-    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration, float cloneFadingSpeed, bool canAttack)
+    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration, float cloneFadingSpeed, bool canAttack, float offset = 0f )
     {
         if (canAttack)
         {
             animator.SetInteger("AttackNumber", Random.Range(1, 4));//从三个攻击中随机选择一个
         }
 
-        transform.position = newTransform.position;
+        transform.position = newTransform.position + new Vector3(offset, 0, 0);
         cloneExistTimer = cloneExistDuration;
         this.cloneFadingSpeed = cloneFadingSpeed;
 

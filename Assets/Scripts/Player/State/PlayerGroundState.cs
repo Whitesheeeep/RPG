@@ -31,6 +31,11 @@ public class PlayerGroundState : PlayerState
         {
             stateMachine.ChangeState(player.AimSwordState);
         }
+        
+        if (Input.GetKeyDown(KeyCode.R) && player.canBlackHoleReleased)
+        {
+            stateMachine.ChangeState(player.BlackHoleState);
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {

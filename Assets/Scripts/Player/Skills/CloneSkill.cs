@@ -12,9 +12,9 @@ public class CloneSkill : Skill
     [SerializeField] public float cloneExistDuration;
     [SerializeField] private float cloneFadingSpeed;
 
-    public void CreateClone(Transform newTransform)
+    public void CreateClone(Transform newTransform, float offset = 0f)
     {
         GameObject gameObject = Instantiate(clonePrefab);
-        gameObject.GetComponent<PlayerCloneController>().SetUpPlayerClone(newTransform, cloneExistDuration,cloneFadingSpeed,canAttack);
+        gameObject.GetComponent<PlayerCloneController>().SetUpPlayerClone(newTransform, cloneExistDuration,cloneFadingSpeed,canAttack, offset);
     }
 }

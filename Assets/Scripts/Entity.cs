@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -24,6 +25,7 @@ public class Entity : MonoBehaviour
     #region Components
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public SpriteRenderer sr { get; private set; }
 
     #endregion Components
 
@@ -41,6 +43,7 @@ public class Entity : MonoBehaviour
         entityFX = GetComponentInChildren<EntityFX>();
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void Update()
@@ -100,7 +103,6 @@ public class Entity : MonoBehaviour
     {
         this.StartCoroutine("HitKnockBack");
         entityFX.StartCoroutine("FlashFX");
-        Debug.Log(gameObject.name + "  受到伤害");
     }
 
     //一个协程，让isBusy在等待一段时间后变为false
@@ -117,5 +119,14 @@ public class Entity : MonoBehaviour
         rb.velocity = new Vector2(KnockbackDir.x * -facingDir, KnockbackDir.y);
         yield return new WaitForSeconds(0.07f);
         isKnockbacked = false;
+    }
+
+    public void MakeTransparent(bool beTransparent)
+    {
+        if (beTransparent)
+        {
+            sr.color = Color.clear;
+        }
+        else { sr.color = Color.white; }
     }
 }

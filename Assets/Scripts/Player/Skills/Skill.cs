@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Skill : MonoBehaviour
 {
     [SerializeField] protected float cooldown;
@@ -21,6 +22,10 @@ public class Skill : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 判断否使用技能，如果可以使用技能则调用UseSkill()函数
+    /// </summary>
+    /// <returns></returns>
     public virtual bool CanUseSkill()
     {
         if(cooldownTimer <= 0)
