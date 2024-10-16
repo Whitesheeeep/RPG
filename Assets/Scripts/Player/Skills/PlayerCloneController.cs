@@ -19,6 +19,11 @@ public class PlayerCloneController : MonoBehaviour
     [SerializeField] private Transform attackCheck;
     private Transform closestEnemy;
 
+    #region 克隆体触发克隆体技能相关信息
+    private float chanceToDuplicate;
+    private bool canDuplicateClone;
+    #endregion 克隆体触发克隆体技能相关信息
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -26,7 +31,7 @@ public class PlayerCloneController : MonoBehaviour
 
         player = PlayerManager.instance.player;
         //控制一开始生成的影子的朝向
-        if (player.facingDir < 0 )
+        if (player.facingDir < 0)
         {
             transform.Rotate(0, 180, 0);
             facingDir = -1;
@@ -43,7 +48,7 @@ public class PlayerCloneController : MonoBehaviour
         cloneExistTimer -= Time.deltaTime;
         if (cloneExistTimer <= 0)
         {
-            sr.color = new Color(1,1,1, sr.color.a - (Time.deltaTime * cloneFadingSpeed));
+            sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * cloneFadingSpeed));
             if (sr.color.a <= 0)
             {
                 Destroy(gameObject);
@@ -51,7 +56,10 @@ public class PlayerCloneController : MonoBehaviour
         }
     }
 
-    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration, float cloneFadingSpeed, bool canAttack,  Transform closestEnemy, float offset = 0f )
+    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration,
+        float cloneFadingSpeed, bool canAttack, Transform closestEnemy, 
+        bool canDuplicate, float chanceToDuplicate,
+        float offset = 0f)
     {
         if (canAttack)
         {
@@ -62,7 +70,8 @@ public class PlayerCloneController : MonoBehaviour
         cloneExistTimer = cloneExistDuration;
         this.cloneFadingSpeed = cloneFadingSpeed;
         this.closestEnemy = closestEnemy;
-
+        this.chanceToDuplicate = chanceToDuplicate;
+        this.canDuplicateClone = canDuplicate;
         FaceClosestTarget();
     }
 
@@ -79,6 +88,16 @@ public class PlayerCloneController : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 hit.GetComponent<Enemy>().GetDamaged();
+
+                if (canDuplicateClone)
+                {
+                    int chance = Random.Range(0, 100);
+                    if(chance < chanceToDuplicate)
+                    {
+                        //乘以 facingDir 主要是为了让克隆体能在敌人左右间接生成
+                        player.skill.clone.CreateClone(transform, 0.5f * facingDir);
+                    }
+                }
             }
         }
     }

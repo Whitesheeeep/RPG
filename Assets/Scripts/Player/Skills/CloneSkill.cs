@@ -17,11 +17,18 @@ public class CloneSkill : Skill
     [SerializeField] public float cloneExistDuration;
     [SerializeField] private float cloneFadingSpeed;
 
+    [Header("Clone can duplicate")]
+    [SerializeField] private bool canDuplicateClone;
+    [SerializeField] private float chanceToDuplicate;
+
     public void CreateClone(Transform newTransform, float offset = 0f)
     {
          GameObject newClone = Instantiate(clonePrefab);
         Transform closestEnemy = FindClosestEnemy(newTransform);
-        newClone.GetComponent<PlayerCloneController>().SetUpPlayerClone(newTransform, cloneExistDuration,cloneFadingSpeed,canAttack, closestEnemy, offset);
+        newClone.GetComponent<PlayerCloneController>().SetUpPlayerClone(newTransform, cloneExistDuration,
+            cloneFadingSpeed,canAttack, closestEnemy, 
+            canDuplicateClone, chanceToDuplicate,
+            offset);
     }
 
     public void CreateOnStart()
