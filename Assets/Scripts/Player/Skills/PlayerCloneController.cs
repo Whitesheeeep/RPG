@@ -17,6 +17,7 @@ public class PlayerCloneController : MonoBehaviour
     private float facingDir = 1;
 
     [SerializeField] private Transform attackCheck;
+    private Transform closestEnemy;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class PlayerCloneController : MonoBehaviour
         }
     }
 
-    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration, float cloneFadingSpeed, bool canAttack, float offset = 0f )
+    public void SetUpPlayerClone(Transform newTransform, float cloneExistDuration, float cloneFadingSpeed, bool canAttack,  Transform closestEnemy, float offset = 0f )
     {
         if (canAttack)
         {
@@ -60,6 +61,7 @@ public class PlayerCloneController : MonoBehaviour
         transform.position = newTransform.position + new Vector3(offset, 0, 0);
         cloneExistTimer = cloneExistDuration;
         this.cloneFadingSpeed = cloneFadingSpeed;
+        this.closestEnemy = closestEnemy;
 
         FaceClosestTarget();
     }
@@ -84,20 +86,6 @@ public class PlayerCloneController : MonoBehaviour
     //TODO: 朝向最近的敌人
     private void FaceClosestTarget()
     {
-        Collider2D[] enemyDetected = Physics2D.OverlapCircleAll(transform.position, 20, LayerMask.GetMask("Enemy"));
-        float closestDistance = Mathf.Infinity;
-        Transform closestEnemy = null;
-        
-        foreach (Collider2D hit in enemyDetected)
-        {
-            float distance = Vector2.Distance(transform.position, hit.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestEnemy = hit.transform;
-            }
-        }
-
         if (closestEnemy != null)
         {
             if (closestEnemy.position.x < transform.position.x)
@@ -107,7 +95,7 @@ public class PlayerCloneController : MonoBehaviour
                     transform.Rotate(0, 180, 0);
                 }
             }
-            else if (closestEnemy.position.x > transform.position.x )
+            else if (closestEnemy.position.x > transform.position.x)
             {
                 if (facingDir == -1)
                 {
@@ -115,6 +103,6 @@ public class PlayerCloneController : MonoBehaviour
                 }
             }
         }
-        
+
     }
 }

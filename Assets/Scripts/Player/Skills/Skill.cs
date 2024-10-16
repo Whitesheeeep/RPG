@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -35,12 +36,39 @@ public class Skill : MonoBehaviour
             return true;
         }
 
-        Debug.Log("Skill is on cooldown");
+        Debug.Log($"{this.GetType().Name} is on cooldown");
         return false;
     }
 
     public virtual void UseSkill()
     {
         //do some skill specific things
+    }
+
+    /// <summary>
+    /// 用于寻找最近的敌人
+    /// </summary>
+    /// <param name="objectTransform">传入想要查找的最近敌方单位的对象</param>
+    /// <returns>最近的敌方单位的 Transform</returns>
+    public Transform FindClosestEnemy(Transform objectTransform)
+    {
+        Collider2D[] enemyDetected = Physics2D.OverlapCircleAll(objectTransform.position, 20);
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (Collider2D hit in enemyDetected)
+        {
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                float distance = Vector2.Distance(objectTransform.position, hit.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = hit.transform;
+                } 
+            }
+        }
+
+        return closestEnemy;
     }
 }

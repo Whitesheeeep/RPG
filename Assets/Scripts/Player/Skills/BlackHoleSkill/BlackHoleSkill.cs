@@ -35,7 +35,6 @@ public class BlackHoleSkill : Skill
     protected override void Update()
     {
         base.Update();
-        Debug.Log(cooldownTimer);
         if (cooldownTimer < 0)
         {
             player.CanBlackHoleReleased(true);
