@@ -3500,14 +3500,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba875a019dc1c34fb55d3d6daa95769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 1000
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  endurance:
+    baseValue: 0
     modifiers: []
   damage:
     baseValue: 10
     modifiers: []
-  strength:
+  criticalChance:
+    baseValue: 99
+    modifiers: []
+  criticalPower:
     baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 1000
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 70
     modifiers: []
   currentHealth: 0
 --- !u!1 &1600379034
@@ -4007,6 +4028,10 @@ PrefabInstance:
     - target: {fileID: 1055744433649722752, guid: 82b31a77dd149cf479bbfe3e5f267106, type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192349497163986815, guid: 82b31a77dd149cf479bbfe3e5f267106, type: 3}
+      propertyPath: fadeSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6761231652042524833, guid: 82b31a77dd149cf479bbfe3e5f267106, type: 3}
       propertyPath: m_LocalPosition.x

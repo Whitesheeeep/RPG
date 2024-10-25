@@ -24,7 +24,6 @@ public class SkeletonDieState : EnemyState
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.speed = 0;
         enemy.moveSpeed = 0;
-
         sr.color = new Color(1, 1, 1, 0.5f);
     }
 
@@ -39,10 +38,10 @@ public class SkeletonDieState : EnemyState
         if(sr.color != Color.clear)
         {
             sr.color = Color.Lerp(sr.color, Color.clear, fadeSpeed * Time.deltaTime);
-        }
-        else
-        {
-            GameObject.Destroy(enemy.gameObject);
+            if(sr.color.a < 0.1f)
+            {
+                enemy.DestroySelf(enemy.gameObject);
+            }
         }
     }
 }

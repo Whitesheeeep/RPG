@@ -125,4 +125,9 @@ public class Enemy : Entity
         base.Die();
         
     }
+
+    public void DestroySelf(GameObject gameObject)
+    {
+        Destroy(gameObject);
+    }
 }

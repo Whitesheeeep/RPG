@@ -34,4 +34,9 @@ public class Stats
             modifiers.Remove(modifier);
         }
     }
+
+    public void SetBaseValue(float value)
+    {
+        baseValue = value;
+    }
 }
