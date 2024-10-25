@@ -201,7 +201,7 @@ public class SwordSkillController : MonoBehaviour
     }
     private void DamageEnemy(Enemy enemy)
     {
-        enemy?.GetDamaged();
+        enemy?.GetDamagedEffects();
         //enemy.StartCoroutine("FreezeTimeFor", freezeTime);
     }
 
@@ -232,7 +232,7 @@ public class SwordSkillController : MonoBehaviour
             }
 
             Enemy enemy = other.GetComponent<Enemy>();
-            enemy?.GetDamaged();
+            enemy?.GetDamagedEffects();
             enemy.StartCoroutine("FreezeTimeFor", freezeTime);
         }
         

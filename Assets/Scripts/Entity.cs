@@ -7,6 +7,8 @@ public class Entity : MonoBehaviour
 {
     public bool isBusy { get; private set; } = false;
 
+    public CharacterStatus status;
+
     #region Collision Info
     [Header("Collision Info")]
     public Transform attackCheck;
@@ -44,6 +46,8 @@ public class Entity : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        status =  GetComponent<CharacterStatus>();
     }
 
     protected virtual void Update()
@@ -99,7 +103,10 @@ public class Entity : MonoBehaviour
     }
     #endregion Flip
 
-    public void GetDamaged()
+    /// <summary>
+    /// 展示受伤效果
+    /// </summary>
+    public void GetDamagedEffects()
     {
         this.StartCoroutine("HitKnockBack");
         entityFX.StartCoroutine("FlashFX");
@@ -128,5 +135,10 @@ public class Entity : MonoBehaviour
             sr.color = Color.clear;
         }
         else { sr.color = Color.white; }
+    }
+
+    public virtual void Die()
+    {
+
     }
 }

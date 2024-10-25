@@ -47,6 +47,7 @@ public class Player : Entity
     public PlayerAimSwordState AimSwordState { get; private set; }
     public PlayerTackBackSwordState TackBackSwordState { get; private set; }
     public PlayerBlackHoleState BlackHoleState { get; private set; }
+    public PlayerDieState dieState { get; private set; }
     #endregion States
 
     protected override void Awake()
@@ -67,6 +68,7 @@ public class Player : Entity
         AimSwordState = new PlayerAimSwordState(StateMachine, this, "SwordAim");
         TackBackSwordState = new PlayerTackBackSwordState(StateMachine, this, "SwordTackBack");
         BlackHoleState = new PlayerBlackHoleState(StateMachine, this, "Jump");
+        dieState = new PlayerDieState(StateMachine, this, "Die");
     }
 
     protected override void Start()
@@ -101,6 +103,10 @@ public class Player : Entity
     }
 
     public void CheckForDashInput()
+
+
+
+
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && this.skill.dash.CanUseSkill())
         {
@@ -125,5 +131,11 @@ public class Player : Entity
     public void CanBlackHoleReleased(bool canReleased)
     {
         canBlackHoleReleased = canReleased;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        StateMachine.ChangeState(dieState);
     }
 }

@@ -72,10 +72,12 @@
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonMoveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\PlayerCloneController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\SkeletonDieState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\SwordSkill.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\SkillManager.cs" />
+    <Compile Include="Assets\Scripts\Stats.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\BlackHoleSkill\BlackHole_Controller.cs" />
     <Compile Include="Assets\Scripts\EntityFX.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerWallJumpState.cs" />
@@ -88,13 +90,16 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimationTirggers.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerInAirState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerDashState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerAimSwordState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyStatus.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerGroundState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationTriggers.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerMoveState.cs" />
+    <Compile Include="Assets\Scripts\CharacterStatus.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerTackBackSwordState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\BlackHoleSkill\BlackHoleSkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonAttackState.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\ParallaxBackground.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerWallSlideState.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerDieState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonGroundState.cs" />
   </ItemGroup>
   <ItemGroup>

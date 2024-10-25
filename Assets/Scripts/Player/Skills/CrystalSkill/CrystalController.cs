@@ -83,7 +83,7 @@ public class CrystalController : MonoBehaviour
         {
             if (item.GetComponent<Enemy>() != null)
             {
-                item.GetComponent<Enemy>()?.GetDamaged();
+                item.GetComponent<Enemy>()?.GetDamagedEffects();
             }
         }
     }

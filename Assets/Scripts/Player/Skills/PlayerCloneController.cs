@@ -87,7 +87,7 @@ public class PlayerCloneController : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                hit.GetComponent<Enemy>().GetDamaged();
+                hit.GetComponent<Enemy>().GetDamagedEffects();
 
                 if (canDuplicateClone)
                 {

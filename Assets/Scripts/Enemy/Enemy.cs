@@ -30,6 +30,11 @@ public class Enemy : Entity
     public float escapeBattleDistance;
     #endregion
 
+    #region Die Info
+    [Header("Die Info")]
+    public float fadeSpeed;
+    #endregion
+
     #region ¿‡
     public EnemyStateMachine stateMachine;
 
@@ -113,5 +118,11 @@ public class Enemy : Entity
         FreezeTime(true);
         yield return new WaitForSeconds(time);
         FreezeTime(false);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        
     }
 }

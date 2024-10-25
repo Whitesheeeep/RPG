@@ -18,7 +18,8 @@ public class EnemyAnimationTirggers : MonoBehaviour
         {
             if (hit.GetComponent<Player>() != null)
             {
-                hit.GetComponent<Player>().GetDamaged();
+                PlayerStatus playerStatus = hit.GetComponent<PlayerStatus>();
+                enemy.GetComponent<EnemyStatus>().DoDamageTo(playerStatus);
             }
         }
     }
