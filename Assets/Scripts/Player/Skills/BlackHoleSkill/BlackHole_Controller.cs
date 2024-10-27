@@ -47,7 +47,7 @@ public class BlackHole_Controller : MonoBehaviour
             cloneAttackReleased = true;
             canCreateHotKeys = false;
             DestroyHotKeys();
-            PlayerManager.instance.player.MakeTransparent(true);
+            PlayerManager.instance.player.entityFX.MakeTransparent(true);
         }
 
         CloneAttackLogic();

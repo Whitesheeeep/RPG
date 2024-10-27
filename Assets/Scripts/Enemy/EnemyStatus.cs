@@ -20,7 +20,6 @@ public class EnemyStatus : CharacterStatus
     public override void TakeDamage(float damageValue)
     {
         base.TakeDamage(damageValue);
-        enemy.GetDamagedEffects();
     }
 
     protected override void Start()

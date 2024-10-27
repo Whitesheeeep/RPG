@@ -18,6 +18,7 @@ public class CrystalController : MonoBehaviour
     private bool canTrace;
     private Transform closestEnemy;
     private float traceSpeed;
+    private Player player;
 
     #region Components
     private Animator animator => GetComponentInChildren<Animator>();
@@ -26,8 +27,10 @@ public class CrystalController : MonoBehaviour
 
     public void SetUpCrystal(float crystalSkillDuration, 
         bool canExplode,float maxExplosionRadius, float explosionSpeed,
-        bool canTrace, float traceSpeed)
+        bool canTrace, float traceSpeed,
+        Player player)
     {
+        this.player = player;
         this.crystalSkillDuration = crystalSkillDuration;
         this.canExplode = canExplode;
         this.maxExplosionRadius = maxExplosionRadius;
@@ -83,7 +86,7 @@ public class CrystalController : MonoBehaviour
         {
             if (item.GetComponent<Enemy>() != null)
             {
-                item.GetComponent<Enemy>()?.GetDamagedEffects();
+                player.status.DoMagicDamageTo(item.GetComponent<CharacterStatus>());
             }
         }
     }

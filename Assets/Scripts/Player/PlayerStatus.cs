@@ -15,7 +15,6 @@ public class PlayerStatus : CharacterStatus
     public override void TakeDamage(float damageValue)
     {
         base.TakeDamage(damageValue);
-        player.GetDamagedEffects();
     }
 
     protected override void Start()

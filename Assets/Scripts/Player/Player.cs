@@ -17,9 +17,13 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed = 8f;
     public float jumpForce;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
+
 
     [Header("Dash Info")]
     public float dashSpeed;
+    private float defaultDashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
     public float dashSmooth;
@@ -75,7 +79,11 @@ public class Player : Entity
     {
         base.Start();
         StateMachine.Initialize(IdleState);
-       
+
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
         
     protected override void Update()
@@ -103,10 +111,6 @@ public class Player : Entity
     }
 
     public void CheckForDashInput()
-
-
-
-
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && this.skill.dash.CanUseSkill())
         {
@@ -123,7 +127,7 @@ public class Player : Entity
     public void ExitBlackHoleState()
     {
         StateMachine.ChangeState(IdleState);
-        MakeTransparent(false);
+        entityFX.MakeTransparent(false);
     }
 
     public void AnimationTrigger() => StateMachine.currentState.AnimationFinishTrigger();
@@ -137,5 +141,25 @@ public class Player : Entity
     {
         base.Die();
         StateMachine.ChangeState(dieState);
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        dashSpeed = dashSpeed * (1 - _slowPercentage);
+        animator.speed = animator.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
     }
 }

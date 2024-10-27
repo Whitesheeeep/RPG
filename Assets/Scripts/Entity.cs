@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -8,6 +9,8 @@ public class Entity : MonoBehaviour
     public bool isBusy { get; private set; } = false;
 
     public CharacterStatus status;
+
+    public Action OnFliped;
 
     #region Collision Info
     [Header("Collision Info")]
@@ -87,6 +90,8 @@ public class Entity : MonoBehaviour
         facingDir *= -1;
         IsFaceRight = !IsFaceRight;
         transform.Rotate(0, 180, 0);
+
+        OnFliped?.Invoke();
     }
 
     public virtual void FlipController(float x)
@@ -128,17 +133,18 @@ public class Entity : MonoBehaviour
         isKnockbacked = false;
     }
 
-    public void MakeTransparent(bool beTransparent)
-    {
-        if (beTransparent)
-        {
-            sr.color = Color.clear;
-        }
-        else { sr.color = Color.white; }
-    }
-
     public virtual void Die()
     {
 
+    }
+
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        animator.speed = 1;
     }
 }
