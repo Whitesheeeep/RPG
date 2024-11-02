@@ -113,7 +113,6 @@ public class CharacterStatus : MonoBehaviour
         {
             totalDamege = totalDamege *
                 (strength.GetValue() + criticalPower.GetValue()) * .01f;
-            Debug.Log("±©»÷³É¹¦" + totalDamege);
         }
 
         //×îÖÕ¼õÉË

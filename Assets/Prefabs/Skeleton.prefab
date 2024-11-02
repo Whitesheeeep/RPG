@@ -274,7 +274,7 @@ MonoBehaviour:
   intelligence:
     baseValue: 0
     modifiers: []
-  endurance:
+  vitality:
     baseValue: 0
     modifiers: []
   damage:
@@ -287,7 +287,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 200
+    baseValue: 1000
     modifiers: []
   armor:
     baseValue: 0
@@ -310,6 +310,8 @@ MonoBehaviour:
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentsDuration: 4
+  shockStrikePrefab: {fileID: 8877666575711713515, guid: cf481bc77785ce14d9e64c549615fe5c, type: 3}
   currentHealth: 0
 --- !u!1 &1321491811262384749
 GameObject:
@@ -396,6 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5123573326735909640}
   - component: {fileID: 5923335220666926052}
+  - component: {fileID: 7358242128998363262}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -471,10 +474,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.65
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7358242128998363262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546974985822612168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e4cd7655a044f42a77bff5038cd1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2869369714347648558
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +662,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1954848535
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -85727878, guid: 687df074731fbf744b668d2275dbb675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -707,6 +722,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashTime: 0.1
   hitMat: {fileID: 2100000, guid: 1cbb6c87fdcb2294baf0096f74c32d96, type: 2}
+  chillColor:
+  - {r: 0, g: 0.5538597, b: 1, a: 1}
+  - {r: 0, g: 0.5529412, b: 1, a: 1}
+  ignitColor:
+  - {r: 1, g: 0.1490565, b: 0.1490565, a: 1}
+  - {r: 1, g: 0.39811313, b: 0.39811313, a: 1}
+  shockColor:
+  - {r: 1, g: 0.88211536, b: 0, a: 1}
+  - {r: 0.96290475, g: 1, b: 0.64716977, a: 1}
 --- !u!1 &7332187051078216454
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +802,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1954848535
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -11
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.7176471}
@@ -892,7 +916,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.65
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

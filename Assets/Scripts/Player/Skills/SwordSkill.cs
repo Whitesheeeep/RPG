@@ -15,7 +15,7 @@ public class SwordSkill : Skill
 
     [Header("SKill Info")]
     [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private Vector2 launchForce;
+    [SerializeField] private /*Vector2*/float launchForce;
     [SerializeField] private float swordGravity;
     [SerializeField] private float freezeTime = 0.1f;
     [SerializeField] private float returnSpeed = 30f;
@@ -95,7 +95,7 @@ public class SwordSkill : Skill
     {
         base.UseSkill();
         //最终方向为鼠标方向乘以发射力
-        finalDir = new Vector2(AimDir().x * launchForce.x, AimDir().y * launchForce.y);
+        finalDir = new Vector2(AimDir().x * launchForce, AimDir().y * launchForce);
         GameObject sword = Instantiate(swordPrefab, player.transform.position, Quaternion.identity);
         SwordSkillController sSCtrl = sword.GetComponent<SwordSkillController>();
 
@@ -149,7 +149,7 @@ public class SwordSkill : Skill
 
     private Vector2 DotPosition(float t)
     {
-        finalDir = new Vector2(AimDir().x * launchForce.x, AimDir().y * launchForce.y);
+        finalDir = new Vector2(AimDir().x * launchForce, AimDir().y * launchForce);
         //Physics.gravity 返回的是一个 Vector2D，其中 x 分量是 0，y 分量是 -9.81，表示重力加速度。
         Vector2 positon = (Vector2)player.transform.position + finalDir * t + 0.5f * Physics2D.gravity * swordGravity * t * t;
         return positon;

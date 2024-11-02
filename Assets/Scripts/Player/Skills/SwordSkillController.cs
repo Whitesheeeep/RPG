@@ -110,7 +110,6 @@ public class SwordSkillController : MonoBehaviour
     //让剑的的方向与飞行轨迹一致
     private void Update()
     {
-        Debug.Log("isBouncing " + isBouncing);
 
         if (canRotate)
             transform.right = rb.velocity;
@@ -129,14 +128,12 @@ public class SwordSkillController : MonoBehaviour
         }
 
         //bounceTime -= Time.deltaTime;
-        Debug.Log("isBounce"+isBouncing);//false
         //剑可以弹跳
         if (isBouncing && enemyTargets.Count > 1)
         {
             BounceStart();
 
         }
-        Debug.Log("敌人数量："+enemyTargets.Count);
         SpinLogic();
     }
 
@@ -180,7 +177,6 @@ public class SwordSkillController : MonoBehaviour
 
     private void BounceStart()
     {
-        Debug.Log("弹跳次数： " + bounceCount);
         if (bounceCount == 0)
         {
             ReturnSword();
@@ -258,7 +254,6 @@ public class SwordSkillController : MonoBehaviour
         //检测到如果只有一个敌人就不弹跳，直接插上去
         if (enemyTargets.Count == 1)
         {
-            Debug.Log("isBouncing " + isBouncing);
             isBouncing = false;
         }
         else
