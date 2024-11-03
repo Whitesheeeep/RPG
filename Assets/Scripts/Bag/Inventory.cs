@@ -161,7 +161,7 @@ public class Inventory : MonoBehaviour
                 //if(value.stackSize <= 0)
                 //{
                 //    inventoryItems.Remove(value);
-                //    inventoryDictionary.Remove(item);
+                //    inventoryDictionary.Remove(OldEquipment);
                 //}
             }
         }
@@ -177,10 +177,20 @@ public class Inventory : MonoBehaviour
             return;
         }
         else
-        {
+        {   
+            foreach (InventoryItem item in playerEquipmentItems)
+            {
+                if ((item.itemData as Equipment_ItemData).equipmentType == clickedItem.equipmentType)
+                {
+                    SwitchEquipment(clickedItem, item.itemData as Equipment_ItemData);
+                    return;
+                }
+            }
+
             InventoryItem newItem = new InventoryItem(clickedItem);
             playerEquipmentDictionary.Add(clickedItem, newItem);
             playerEquipmentItems.Add(newItem);
+            clickedItem.AddModifiers();
         }
 
         RemoveItemFromInventory(clickedItem);
@@ -192,11 +202,24 @@ public class Inventory : MonoBehaviour
         {
             playerEquipmentItems.Remove(value);
             playerEquipmentDictionary.Remove(clickedItem);
+            clickedItem.RemoveModifiers();
         }
         
 
         AddToEquipmentInventory(clickedItem);
     }
+    private void SwitchEquipment(Equipment_ItemData newEquipment, Equipment_ItemData OldEquipment)
+    {
+        PlayerUnEquipWith(OldEquipment);
+
+        InventoryItem newInventoryItem = new InventoryItem(newEquipment);
+        playerEquipmentDictionary.Add(newEquipment, newInventoryItem);
+        playerEquipmentItems.Add(newInventoryItem);
+        newEquipment.AddModifiers();
+
+        RemoveItemFromInventory(newEquipment);
+    }
+
 
 
 }

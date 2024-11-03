@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 5574929261713649339}
   - component: {fileID: 5192349497163986815}
   - component: {fileID: 3251966005361133681}
+  - component: {fileID: 1999019852350845357}
   m_Layer: 9
   m_Name: Skeleton
   m_TagString: Untagged
@@ -287,7 +288,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 1000
+    baseValue: 10
     modifiers: []
   armor:
     baseValue: 0
@@ -313,6 +314,22 @@ MonoBehaviour:
   alimentsDuration: 4
   shockStrikePrefab: {fileID: 8877666575711713515, guid: cf481bc77785ce14d9e64c549615fe5c, type: 3}
   currentHealth: 0
+  level: 1
+  liftPercentage: 0.4
+--- !u!114 &1999019852350845357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055744433649722752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6641208b02bba46a57b585fe9fffa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefab: {fileID: 6951624073573362861, guid: 98341072d064d0c408c8fe84554f596a, type: 3}
+  item: {fileID: 11400000, guid: fd0647fc3a45c3f41a2ec6d9e8168291, type: 2}
 --- !u!1 &1321491811262384749
 GameObject:
   m_ObjectHideFlags: 0

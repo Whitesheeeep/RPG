@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+
     [SerializeField] protected LayerMask whatIsPlayer;
 
     #region Stunned Info

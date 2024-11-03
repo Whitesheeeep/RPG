@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private ItemData itemData;
 
-    //只会在 Editor状态中启用，在 Play 状态下不会启用。OnValidate 会在每次在 inspector 中修改了这个脚本的值后被调用
-    private void OnValidate()
+
+    private void VisualImage()
     {
+        if (itemData == null)
+        {
+            return;
+        }
         GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        gameObject.name = "Item Object-"+ itemData.itemName; 
+        gameObject.name = "Item Object-" + itemData.itemName;
     }
 
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetUpItem(ItemData _itemData, Vector2 _velocity)
     {
-        if (collision.GetComponent<Player>() != null)
-        {
-            Inventory.instance.AddItem(itemData);
-            Destroy(gameObject);
-        }
+        itemData = _itemData;
+        rb.velocity = _velocity;
+
+        VisualImage();
+    }
+
+    public void PickUpItem()
+    {
+        Inventory.instance.AddItem(itemData);
+        Destroy(gameObject);
     }
 }
