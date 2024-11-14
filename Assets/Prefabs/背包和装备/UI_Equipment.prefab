@@ -95,6 +95,7 @@ MonoBehaviour:
     itemData: {fileID: 0}
     stackSize: 0
   EquipmentType: 2
+  uI_Menu: {fileID: 0}
 --- !u!1 &6492506061365912027
 GameObject:
   m_ObjectHideFlags: 0
