@@ -9,9 +9,8 @@ public class ItemDrop : MonoBehaviour
     private List<ItemData> possibleDropList = new List<ItemData>();
 
     [SerializeField] private GameObject dropItemPrefab;
-    [SerializeField] private ItemData item;
 
-    public void GenerateDrop()
+    public virtual void GenerateDrop()
     {
         for (int i = 0; i < possibleDrop.Length; i++)
         {
@@ -28,8 +27,9 @@ public class ItemDrop : MonoBehaviour
         }
     }
 
-    public void DropItem(ItemData _itemData)
+    protected void DropItem(ItemData _itemData)
     {
+        Debug.Log("开始初始化掉落物品");
         GameObject dropItem = Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
         dropItem.GetComponent<ItemObject>().SetUpItem(_itemData, new Vector2(Random.Range(-5f, 5f), Random.Range(5f, 7f)));
     }

@@ -43,7 +43,7 @@ public class ThunderStrike_Controller : MonoBehaviour
 
         if (Vector2.Distance(transform.position, targetStatus.transform.position) < 0.1f)
         {
-            animator.transform.position = new Vector3(0, 1f);
+            animator.transform.position = transform.position + new Vector3(0, 1f);
             animator.transform.localRotation = Quaternion.identity;
             transform.localRotation = Quaternion.identity;
             transform.localScale = new Vector3(3, 3);

@@ -4,25 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public class Player : Entity
 {
     public GameObject sword { get; private set; }
 
     [Header("Attack Info")]
     public Vector2[] attackMotion;
+
     public float counterAttackWindow;
-    
 
     [Header("Move Info")]
     public float moveSpeed = 8f;
+
     public float jumpForce;
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
-
     [Header("Dash Info")]
     public float dashSpeed;
+
     private float defaultDashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
@@ -38,6 +38,7 @@ public class Player : Entity
     [HideInInspector] public bool canBlackHoleReleased = true;
 
     #region States
+
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -52,6 +53,7 @@ public class Player : Entity
     public PlayerTackBackSwordState TackBackSwordState { get; private set; }
     public PlayerBlackHoleState BlackHoleState { get; private set; }
     public PlayerDieState dieState { get; private set; }
+
     #endregion States
 
     protected override void Awake()
@@ -80,12 +82,11 @@ public class Player : Entity
         base.Start();
         StateMachine.Initialize(IdleState);
 
-
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
         defaultDashSpeed = dashSpeed;
     }
-        
+
     protected override void Update()
     {
         base.Update();
@@ -96,6 +97,11 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.Q))
         {
             this.skill.crystalSkill.CanUseSkill();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Inventory.instance.UseFlask();
         }
     }
 
@@ -114,8 +120,8 @@ public class Player : Entity
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && this.skill.dash.CanUseSkill())
         {
-            dashDir = Input.GetAxisRaw("Horizontal");  
-            if(dashDir == 0)
+            dashDir = Input.GetAxisRaw("Horizontal");
+            if (dashDir == 0)
             {
                 dashDir = facingDir;
             }
@@ -151,7 +157,6 @@ public class Player : Entity
         animator.speed = animator.speed * (1 - _slowPercentage);
 
         Invoke("ReturnDefaultSpeed", _slowDuration);
-
     }
 
     protected override void ReturnDefaultSpeed()

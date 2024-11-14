@@ -6,18 +6,17 @@ public class ItemObject_Trigger : MonoBehaviour
 {
     private ItemObject itemObject => GetComponentInParent<ItemObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>() != null)
         {
-            Debug.Log("”µ”–ŒÔ∆∑");
-            itemObject.PickUpItem();
+            if (collision.GetComponent<PlayerStatus>() != null)
+            {
+                if (!collision.GetComponentInParent<PlayerStatus>().isDead)
+                {
+                    itemObject.PickUpItem();
+                }
+            }
         }
     }
 }

@@ -87,8 +87,16 @@ public class CrystalController : MonoBehaviour
             if (item.GetComponent<Enemy>() != null)
             {
                 player.status.DoMagicDamageTo(item.GetComponent<CharacterStatus>());
+
+                Equipment_ItemData equipeddAmulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+                if (equipeddAmulet != null)
+                {
+                    equipeddAmulet.ExecuteItemEffect(item.transform);
+                }
             }
-        }
+
+            
+        }   
     }
 
     //»√Duration ÷±Ω”πÈ¡„

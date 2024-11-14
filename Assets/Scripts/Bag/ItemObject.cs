@@ -7,6 +7,21 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private ItemData itemData;
 
+    public void Awake()
+    {
+        GetComponent<SpriteRenderer>().sprite = itemData.icon;
+    }
+
+    private void OnValidate()
+    {
+        if (itemData == null)
+        {
+            return;
+        }
+        
+        gameObject.name = "Item Object-" + itemData.itemName;
+
+    }
 
     private void VisualImage()
     {
@@ -28,6 +43,12 @@ public class ItemObject : MonoBehaviour
 
     public void PickUpItem()
     {
+        if(!Inventory.instance.CanAddItem())
+        {
+            rb.velocity = new Vector2(0, 5);
+            return;
+        }
+
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }
