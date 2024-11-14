@@ -23,6 +23,8 @@ public class UI_PlayerEquipment : UI_Item, IPointerDownHandler, IPointerEnterHan
         {
             Inventory.instance.PlayerUnEquipWith(inventoryItem.itemData as Equipment_ItemData);
         }
+
+        uI_Menu.descriptionToolTip.HideToolTip();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum EquipmentType
@@ -48,6 +44,9 @@ public class Equipment_ItemData : ItemData
 
     public int iceDamage;
     public int lightingDamage;
+
+    [Header("Craft Requirement")]
+    public List<InventoryItem> craftRequirementMaterials;
     #endregion 武器的各项属性
 
     private int descrptionLength = 0;//用于控制最小的文本面积
@@ -146,13 +145,13 @@ public class Equipment_ItemData : ItemData
 
     private void AddItemDescription(int _value, string _name)
     {
-        if(_value != 0)
+        if (_value != 0)
         {
             if (itemDescription_Sb.Length >= 0)
             {
                 itemDescription_Sb.AppendLine();
             }
-            if(_value > 0)
+            if (_value > 0)
             {
                 itemDescription_Sb.Append("+" + _value + "\t" + _name);
             }

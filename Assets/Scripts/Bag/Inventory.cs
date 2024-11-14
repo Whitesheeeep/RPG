@@ -338,4 +338,42 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
+
+    public bool CanCraft(Equipment_ItemData _targetEquipItem, List<InventoryItem> _requiredMaterial)
+    {
+        List<InventoryItem> usedItems = new List<InventoryItem>();
+
+        for (int i = 0; i < _requiredMaterial.Count; i++)
+        {
+            if(stashDictionary.TryGetValue(_requiredMaterial[i].itemData, out InventoryItem value))
+            {
+                if (value.stackSize < _requiredMaterial[i].stackSize)
+                {
+                    Debug.Log("材料不足！");
+                    return false;
+                }
+                else
+                {
+                    for (int j = 0; j < _requiredMaterial[i].stackSize; j++)
+                    {
+                        usedItems.Add(value);
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("材料不足！");
+                return false;
+            }
+        }
+        
+        for (int i = 0; i < usedItems.Count; i++)
+        {
+            RemoveItemFromStash(usedItems[i].itemData);  
+        }
+        AddItem(_targetEquipItem);
+        Debug.Log("合成成功！" + _targetEquipItem.itemName);
+
+        return true;
+    }
 }

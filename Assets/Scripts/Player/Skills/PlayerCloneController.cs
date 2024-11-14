@@ -101,8 +101,6 @@ public class PlayerCloneController : MonoBehaviour
             }
         }
     }
-
-    //TODO: 朝向最近的敌人
     private void FaceClosestTarget()
     {
         if (closestEnemy != null)

@@ -7,7 +7,9 @@ public class UI_Menu : MonoBehaviour
     [SerializeField] private GameObject CraftUI;
     [SerializeField] private GameObject OptionsUI;
 
+    public UI_SkillToolTip skillToolTip;
     public UI_DescriptionToolTip descriptionToolTip;
+    public CraftDescpWindow craftDescpWindow;
 
     private void Start()
     {

@@ -7,11 +7,11 @@ public class UI_ItemSlot : UI_Item, IPointerDownHandler, IPointerEnterHandler, I
 {
     
     [SerializeField] private TextMeshProUGUI itemCount;
-    private UI_Menu UI_Menu;
+    protected UI_Menu uI_Menu;
 
-    private void Start()
+    protected virtual void Start()
     {
-        UI_Menu = GetComponentInParent<UI_Menu>();
+        uI_Menu = GetComponentInParent<UI_Menu>();
     }
 
     public override void UpdateSlots(InventoryItem _newItem)
@@ -63,14 +63,15 @@ public class UI_ItemSlot : UI_Item, IPointerDownHandler, IPointerEnterHandler, I
                 Inventory.instance.PlayerEquipWith(inventoryItem.itemData as Equipment_ItemData);
             }
         }
-        
+
+        uI_Menu.descriptionToolTip.HideToolTip();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (inventoryItem != null && inventoryItem.itemData != null)
         {
-            UI_Menu.descriptionToolTip.ShowToolTip(inventoryItem.itemData as Equipment_ItemData); 
+            uI_Menu.descriptionToolTip.ShowToolTip(inventoryItem.itemData as Equipment_ItemData); 
         }
     }
 
@@ -78,7 +79,7 @@ public class UI_ItemSlot : UI_Item, IPointerDownHandler, IPointerEnterHandler, I
     {
         if (inventoryItem != null && inventoryItem.itemData != null)
         {
-            UI_Menu.descriptionToolTip.HideToolTip();
+            uI_Menu.descriptionToolTip.HideToolTip();
         }
     }
 }

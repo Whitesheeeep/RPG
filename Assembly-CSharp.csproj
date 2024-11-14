@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Player\Skills\CrystalSkill\CrystalAnimationTrigger.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\CloneSkill.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\CrystalSkill\CrystalSkill.cs" />
+    <Compile Include="Assets\Scripts\Bag\Craft\UI_CraftSlot.cs" />
     <Compile Include="Assets\Scripts\Bag\Inventory.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonBattleState.cs" />
     <Compile Include="Assets\Scripts\UI\UI_Menu.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Scripts\Player\Skills\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\BlackHoleSkill\BlackHole_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerWallJumpState.cs" />
+    <Compile Include="Assets\Scripts\Bag\Skill Tree\UI_SkillToolTip.cs" />
     <Compile Include="Assets\Scripts\Bag\UI\UI_DescriptionToolTip.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Assets\Scripts\Bag\UI\UI_ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Bag\UI\UI_StatSlot.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Bag\Craft\UI_CraftList.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerCounterAttackState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerIdleState.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerBlackHoleState.cs" />
@@ -127,12 +130,14 @@
     <Compile Include="Assets\Scripts\Player\Skills\BlackHoleSkill\BlackHoleSkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Bag\Craft\CraftDescpWindow.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\CrystalSkill\CrystalController.cs" />
     <Compile Include="Assets\Scripts\ItemEffects\Heal Effect\Heal Effect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\FX\EntityFX.cs" />
     <Compile Include="Assets\Scripts\ItemEffects\FlashStrike\FlashAttack_ItemEffects.cs" />
     <Compile Include="Assets\Scripts\Base\Stats.cs" />
+    <Compile Include="Assets\Scripts\Bag\Skill Tree\SkillTreeLock.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\Bag\ItemDrop.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerWallSlideState.cs" />

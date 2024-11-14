@@ -9,7 +9,7 @@ public class ItemObject : MonoBehaviour
 
     public void Awake()
     {
-        GetComponent<SpriteRenderer>().sprite = itemData.icon;
+        
     }
 
     private void OnValidate()
@@ -37,7 +37,7 @@ public class ItemObject : MonoBehaviour
     {
         itemData = _itemData;
         rb.velocity = _velocity;
-
+        GetComponent<SpriteRenderer>().sprite = itemData.icon;
         VisualImage();
     }
 
