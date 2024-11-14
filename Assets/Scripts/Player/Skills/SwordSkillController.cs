@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 
@@ -198,7 +199,12 @@ public class SwordSkillController : MonoBehaviour
     private void DamageEnemy(Enemy enemy)
     {
         player.status.DoDamageTo(enemy.GetComponent<CharacterStatus>());
-        //enemy.StartCoroutine("FreezeTimeFor", freezeTime);
+        Equipment_ItemData equipeddAmulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+        if (equipeddAmulet != null)
+        {
+            equipeddAmulet.ExecuteItemEffect(enemy.transform);
+        }
+        //enemy.StartCoroutine("FreezeTimeCoroutine", freezeTime);
     }
 
     
@@ -228,8 +234,9 @@ public class SwordSkillController : MonoBehaviour
             }
 
             Enemy enemy = other.GetComponent<Enemy>();
+            DamageEnemy(enemy);
             enemy?.GetDamagedEffects();
-            enemy.StartCoroutine("FreezeTimeFor", freezeTime);
+            enemy.StartCoroutine("FreezeTimeCoroutine", freezeTime);
         }
         
 

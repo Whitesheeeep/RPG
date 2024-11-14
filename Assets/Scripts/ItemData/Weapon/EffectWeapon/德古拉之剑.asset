@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6551ea97398ca894dab28d1ecc553e6b, type: 3}
-  m_Name: Wooden_Sword
+  m_Name: "\u5FB7\u53E4\u62C9\u4E4B\u5251"
   m_EditorClassIdentifier: 
-  itemName: Wooden_Swrod
-  icon: {fileID: 1025091068, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: "\u5FB7\u53E4\u62C9\u4E4B\u5251"
+  icon: {fileID: -1944902997, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemType: 1
+  dropChance: 14.2
   equipmentType: 0
+  itemEffects:
+  - {fileID: 11400000, guid: eddb5509188c0154d85188d789448f27, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
   vitality: 0
-  damage: 5
-  criticalChance: 0
+  damage: 15
+  criticalChance: 15
   criticalPower: 0
   maxHealth: 0
   armor: 0

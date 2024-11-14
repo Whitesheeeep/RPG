@@ -100,6 +100,14 @@ public class Enemy : Entity
     }
     #endregion
 
+    public void FreezeTimeFor(float _freezeDuration) => StartCoroutine(FreezeTimeCoroutine(_freezeDuration));
+    public IEnumerator FreezeTimeCoroutine(float time)
+    {
+        FreezeTime(true);
+        yield return new WaitForSeconds(time);
+        FreezeTime(false);
+    }
+
     public void FreezeTime(bool isFreeze)
     {
         if (isFreeze)
@@ -112,13 +120,6 @@ public class Enemy : Entity
             moveSpeed = defaultMoveSpeed;
             animator.speed = 1;
         }
-    }
-
-    public IEnumerator FreezeTimeFor(float time)
-    {
-        FreezeTime(true);
-        yield return new WaitForSeconds(time);
-        FreezeTime(false);
     }
 
     public override void Die()

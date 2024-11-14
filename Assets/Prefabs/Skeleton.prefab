@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 0}
   attackCheck: {fileID: 6646839157857549486}
-  attackRadius: 1.06
+  attackRadius: 1.1
   KnockbackDir: {x: 5, y: 4}
   entityFX: {fileID: 0}
   groundCheck: {fileID: 6694393557278388145}
@@ -248,7 +248,7 @@ MonoBehaviour:
   counterImage: {fileID: 7332187051078216454}
   moveSpeed: 3
   idleTime: 2
-  attackDistance: 2
+  attackDistance: 1.6
   attackCoolDown: 0.5
   LastAttackTime: 0
   battleTime: 6
@@ -288,7 +288,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 10
+    baseValue: 200
     modifiers: []
   armor:
     baseValue: 0
@@ -314,6 +314,7 @@ MonoBehaviour:
   alimentsDuration: 4
   shockStrikePrefab: {fileID: 8877666575711713515, guid: cf481bc77785ce14d9e64c549615fe5c, type: 3}
   currentHealth: 0
+  isDead: 0
   level: 1
   liftPercentage: 0.4
 --- !u!114 &1999019852350845357
@@ -328,8 +329,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6641208b02bba46a57b585fe9fffa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountOfDrop: 2
+  possibleDrop:
+  - {fileID: 11400000, guid: 11edad35bdbdb994ab7f555e8d579f4b, type: 2}
+  - {fileID: 11400000, guid: 9abf899f0bb1fee439b4b7d01973f7b7, type: 2}
+  - {fileID: 11400000, guid: a1e05e6142a85c048b7941c8f7e55a4b, type: 2}
+  - {fileID: 11400000, guid: 6c6d4086034b34c42ba0a158382546fe, type: 2}
+  - {fileID: 11400000, guid: fd0647fc3a45c3f41a2ec6d9e8168291, type: 2}
   dropItemPrefab: {fileID: 6951624073573362861, guid: 98341072d064d0c408c8fe84554f596a, type: 3}
-  item: {fileID: 11400000, guid: fd0647fc3a45c3f41a2ec6d9e8168291, type: 2}
 --- !u!1 &1321491811262384749
 GameObject:
   m_ObjectHideFlags: 0

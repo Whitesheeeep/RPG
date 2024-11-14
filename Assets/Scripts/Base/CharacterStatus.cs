@@ -3,6 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatsType
+{
+    strength,
+    agility,
+    intelligence,
+    vitality,
+    damage,
+    criticalChance,
+    criticalPower,
+    maxHealth,
+    armor,
+    evasion,
+    magicResistance,
+    fireDamage,
+    iceDamage,
+    lightingDamage
+}
+
 public class CharacterStatus : MonoBehaviour
 {
     private EntityFX entityFX;
@@ -50,7 +68,7 @@ public class CharacterStatus : MonoBehaviour
 
     public float currentHealth;
     public Action OnHealthChanged;
-    protected bool isDead;
+    public bool isDead;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -180,6 +198,7 @@ public class CharacterStatus : MonoBehaviour
 
         targetStatus.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
 
+
     }
 
 
@@ -201,6 +220,25 @@ public class CharacterStatus : MonoBehaviour
         currentHealth -= _damage;
 
         OnHealthChanged?.Invoke();
+    }
+
+    public virtual void IncreaseHealthyBy(float _damage)
+    {
+        currentHealth += _damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, GetMaxHealth());
+        OnHealthChanged?.Invoke();
+    }
+
+    public virtual void StatsIncreaseBy(float _value, float _duration, Stats _stats)
+    {
+        StartCoroutine(StatsModifyCoroutine(_value, _duration, _stats));
+    }
+
+    protected virtual IEnumerator StatsModifyCoroutine(float _value, float _duration, Stats _stats)
+    {
+        _stats.AddModifier(_value);
+        yield return new WaitForSeconds(_duration);
+        _stats.RemoveModifier(_value);
     }
 
     public void ApplyAilments(bool _isIgnited, bool _isChilled, bool _isShocked)
@@ -257,7 +295,7 @@ public class CharacterStatus : MonoBehaviour
 
                 if (closestEnemy != null)
                 {
-                    GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position + new Vector3(0, 1f), Quaternion.identity);
+                    GameObject newShockStrike = Instantiate(shockStrikePrefab, closestEnemy.transform.position + new Vector3(0, 1f), Quaternion.identity);
                     newShockStrike.GetComponent<ThunderStrike_Controller>().SetUpThunder(shockDamage, closestEnemy.GetComponent<CharacterStatus>());
                 }
             }
@@ -265,7 +303,7 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;//给点燃伤害赋值
+    public void SetupIgniteDamage(float _damage) => igniteDamage = _damage;//给点燃伤害赋值
 
     //法抗计算
     private float CheckTargetResistance(CharacterStatus _targetStatus, float totleMagicalDamage)//法抗计算
@@ -330,5 +368,47 @@ public class CharacterStatus : MonoBehaviour
     public virtual void Die()
     {
         isDead = true;
+    }
+
+    /// <summary>
+    /// 你所要增加的属性
+    /// </summary>
+    /// <param name="_statsType">你想要增加属性的数据类型，比如护甲（Armor）</param>
+    /// <returns></returns>
+    public Stats StatOfType(StatsType _statsType)
+    {
+        switch (_statsType)
+        {
+            case StatsType.strength:
+                return strength;
+            case StatsType.agility:
+                return agility;
+            case StatsType.intelligence:
+                return intelligence;
+            case StatsType.vitality:
+                return vitality;
+            case StatsType.damage:
+                return damage;
+            case StatsType.criticalChance:
+                return criticalChance;
+            case StatsType.criticalPower:
+                return criticalPower;
+            case StatsType.maxHealth:
+                return maxHealth;
+            case StatsType.armor:
+                return armor;
+            case StatsType.evasion:
+                return evasion;
+            case StatsType.magicResistance:
+                return magicResistance;
+            case StatsType.fireDamage:
+                return fireDamage;
+            case StatsType.iceDamage:
+                return iceDamage;
+            case StatsType.lightingDamage:
+                return lightingDamage;
+            default:
+                return null;
+        }
     }
 }
