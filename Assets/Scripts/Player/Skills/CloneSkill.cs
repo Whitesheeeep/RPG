@@ -8,11 +8,6 @@ public class CloneSkill : Skill
 
     [SerializeField] private GameObject clonePrefab;
 
-    //能否在冲击开始时生成影子的技能锁
-    [SerializeField] private bool canCreateCloneOnStart;
-    //能否在冲击结束时生成影子的技能锁
-    [SerializeField] private bool canCreateCloneOnEnd;
-
     [Header("PlayerCloneInfo")]
     [SerializeField] public float cloneExistDuration;
     [SerializeField] private float cloneFadingSpeed;
@@ -29,21 +24,5 @@ public class CloneSkill : Skill
             cloneFadingSpeed,canAttack, closestEnemy, 
             canDuplicateClone, chanceToDuplicate,
             offset);
-    }
-
-    public void CreateOnStart()
-    {
-        if (canCreateCloneOnStart)
-        {
-            CreateClone(player.transform);
-        }
-    }
-
-    public void CreateOnEnd()
-    {
-        if (canCreateCloneOnEnd)
-        {
-            CreateClone(player.transform);
-        }
     }
 }

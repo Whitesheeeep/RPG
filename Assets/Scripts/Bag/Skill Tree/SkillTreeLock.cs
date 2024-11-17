@@ -11,6 +11,7 @@ public class SkillTreeLock : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private UI_Menu uI_Menu;
     #endregion
 
+    [SerializeField] private int skillPrice;
     [SerializeField] private SkillTreeLock[] shouldBeLocked;
     [SerializeField] private SkillTreeLock[] shouldBeUnLocked;
 
@@ -24,11 +25,17 @@ public class SkillTreeLock : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public bool isLocked = true;
 
+    private void Awake()
+    {
+        GetComponent<Button>().onClick.AddListener(() => CanUnlockSkill());
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Image>().color = LockedSkillColor;
-        GetComponent<Button>().onClick.AddListener(() => CanUnlockSkill());
+        if (isLocked) GetComponent<Image>().color = LockedSkillColor;
+        
 
         uI_Menu = FindObjectOfType<UI_Menu>();
     }
@@ -38,6 +45,7 @@ public class SkillTreeLock : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         gameObject.name = "Skill-" + skillName;
     }
 
+    //查看是否可以解锁技能，若能则将技能树的图标变为解锁状态
     private void CanUnlockSkill()
     {
         foreach (var skill in shouldBeLocked)
@@ -57,7 +65,10 @@ public class SkillTreeLock : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         }
 
+        if (!PlayerManager.instance.HaveEnoughMoney(skillPrice)) return;
+
         isLocked = false;
+        GetComponent<Button>().interactable = false;
         GetComponent<Image>().color = Color.white;
     }
 

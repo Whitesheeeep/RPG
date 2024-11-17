@@ -118,6 +118,8 @@ public class Player : Entity
 
     public void CheckForDashInput()
     {
+        if (!skill.dash.dashUnlockEnabled) return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && this.skill.dash.CanUseSkill())
         {
             dashDir = Input.GetAxisRaw("Horizontal");
